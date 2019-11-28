@@ -2,8 +2,10 @@
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subject } from 'rxjs';
 
 export class RecipeService {
+    recipesChanged = new Subject<Recipe[]>();
 
     constructor(private route: ActivatedRoute) {}
 
@@ -41,7 +43,18 @@ export class RecipeService {
         return this.recipes[id];
     }
 
-    saveRecipe(updatedRecipe: Recipe) {
-        this.recipes.push(updatedRecipe);
+    addRecipe(recipe: Recipe) {
+        this.recipes.push(recipe);
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    updateRecipe(index: number, updatedRecipe: Recipe) {
+        this.recipes[index] = updatedRecipe;
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    deleteRecipe(index: number) {
+        this.recipes.splice(index,1);
+        this.recipesChanged.next(this.recipes.slice());
     }
 }
