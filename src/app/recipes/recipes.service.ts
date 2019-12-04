@@ -9,28 +9,12 @@ export class RecipeService {
 
     constructor(private route: ActivatedRoute) {}
 
-     recipes: Recipe[] = [
-        new Recipe(0,
-            'Baklava',
-            'The delicious original.',
-            'https://www.fifteenspatulas.com/wp-content/uploads/2012/03/Baklava-Fifteen-Spatulas-11.jpg',
-            [
-                new Ingredient('Dough', 2),
-                new Ingredient('Walnuts', 3),
-                new Ingredient('Honey', 10),
+    private recipes: Recipe[] = [];
 
-            ]),
-            new Recipe(1,
-            'Baklava 2.0',
-            'A new twist on an old favorite.',
-            'https://cleobuttera.com/wp-content/uploads/2018/03/lifted-baklava.jpg',
-            [
-                new Ingredient('Dough', 5),
-                new Ingredient('Peanuts', 2),
-                new Ingredient('Syrup', 8),
-
-            ]),
-      ];
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
+        this.recipesChanged.next(this.recipes.slice());
+    }
 
     getRecipes() {
         //Uisng slice() with no arguments will keep the array's reference private
