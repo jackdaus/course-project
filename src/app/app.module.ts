@@ -13,12 +13,11 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
-import { Routes, RouterModule } from '@angular/router';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipes.service';
 import { HttpClientModule } from '@angular/common/http';
-import { RecipeResolverService } from './recipes/recipe-resolver.service';
+import { AuthComponent } from './auth/auth.component';
 
 
 @NgModule({
@@ -34,6 +33,7 @@ import { RecipeResolverService } from './recipes/recipe-resolver.service';
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
