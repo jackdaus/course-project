@@ -16,7 +16,10 @@ export class DataStorageService {
 
         this.http.put(this.baseURL + this.recipesEndPoint,
             recipes)
-            .subscribe();
+            .subscribe(
+                resData =>{},
+                this.catchStorageError
+            );
     }
 
     retrieveRecipes() {
@@ -31,5 +34,11 @@ export class DataStorageService {
                     this.recipeService.setRecipes(recipes);
                 })
             );
+    }
+
+    private catchStorageError(errorData) {
+        let errorMessage;
+        errorMessage = errorData.error.error ? errorData.error.error : 'Unidentified error';
+        alert(errorMessage);
     }
 }

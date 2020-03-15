@@ -49,7 +49,28 @@ export class AuthService {
 				this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
 			})
 		);
-	}
+  }
+  
+  autoLogin() {
+    const userData: {
+      email: string,
+      id: string,
+      _token: string,
+      _tokenExpirationDate: string
+    } = JSON.parse(localStorage.getItem('userData'));
+
+    if(!userData) {
+      return;
+    }
+
+    const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
+
+    //ensures that the token is still valid by using the token getter method. If valid, sets the user
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+    }
+
+  }
 
 	logout() {
 		this.user.next(null);
@@ -59,7 +80,8 @@ export class AuthService {
 	private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
 		const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
 		const user = new User(email, userId, token, expirationDate);
-		this.user.next(user);
+    this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user));
 	}
 
 	private handleError(errorRes: HttpErrorResponse) {
