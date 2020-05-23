@@ -6,10 +6,10 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 import { RouterModule, Routes } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGaurd } from '../auth/auth.gaurd';
 import { RecipeResolverService } from './recipe-resolver.service';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -49,8 +49,8 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forChild(routes), //forChild will automatically "merge" the child routes into the app module routes
-    CommonModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   exports: [
     RecipesComponent,
