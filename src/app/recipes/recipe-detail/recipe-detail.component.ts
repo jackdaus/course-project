@@ -3,6 +3,7 @@ import { Recipe } from '../recipe.model';
 import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from '../recipes.service';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -17,7 +18,8 @@ export class RecipeDetailComponent implements OnInit {
   constructor(private slService: ShoppingListService,
               private recipeSerice: RecipeService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private dataStorageService: DataStorageService,) { }
 
   ngOnInit() {
     // This is good for intiialization of the component, but it will not update dynamicaly
@@ -47,6 +49,7 @@ export class RecipeDetailComponent implements OnInit {
 
   onDeleteRecipe() {
     this.recipeSerice.deleteRecipe(this.recipeIdFromRoute);
+    this.dataStorageService.storeRecipes();
     this.router.navigate(['recipes']);
   }
 }

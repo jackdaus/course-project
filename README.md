@@ -30,3 +30,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Run `ng build --prod --base-href https://jackdaus.github.io/course-project/`
 Run `ngh --dir dist/course-project`
+
+## Steps to deploy to firebase
+
+Run `ng build --prod`
+Run `firebase deploy`

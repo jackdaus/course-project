@@ -7,15 +7,14 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthGaurd } from '../auth/auth.gaurd';
 import { RecipeResolverService } from './recipe-resolver.service';
 import { SharedModule } from '../shared/shared.module';
+import { AuthGaurd } from '../auth/auth.gaurd';
 
 const routes: Routes = [
   {
     path: '',
     component: RecipesComponent,
-    canActivate: [AuthGaurd],
     children: [
       {
         path: '',
@@ -23,11 +22,13 @@ const routes: Routes = [
       },
       {
         path: 'new',
-        component: RecipeEditComponent
+        component: RecipeEditComponent,
+        canActivate: [AuthGaurd],
       },
       {
         path: ':id/edit',
-        component: RecipeEditComponent
+        component: RecipeEditComponent,
+        canActivate: [AuthGaurd],
       },
       {
         path: ':id',
