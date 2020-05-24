@@ -13,7 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
-    path: 'recipes',
+    path: '',
     component: RecipesComponent,
     canActivate: [AuthGaurd],
     children: [
@@ -36,7 +36,7 @@ const routes: Routes = [
       },
     ]
   },
-]
+];
 
 @NgModule({
   declarations: [
@@ -48,17 +48,9 @@ const routes: Routes = [
     RecipeEditComponent,
   ],
   imports: [
-    RouterModule.forChild(routes), //forChild will automatically "merge" the child routes into the app module routes
+    RouterModule.forChild(routes), // forChild will automatically "merge" the child routes into the app module routes
     ReactiveFormsModule,
     SharedModule,
   ],
-  exports: [
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    RecipeStartComponent,
-    RecipeEditComponent,
-  ]
 })
 export class RecipesModule { }

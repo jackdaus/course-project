@@ -22,11 +22,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       (recipes: Recipe[]) => {
         this.recipes = recipes;
       }
-    )
+    );
   }
 
   onNewRecipe() {
-    this.router.navigate(['/recipes','new']);
+    this.router.navigate(['/recipes', 'new']);
   }
 
   ngOnDestroy() {

@@ -10,33 +10,33 @@ import { RecipeService } from '../recipes.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  //@Input() recipe: Recipe;
+  // @Input() recipe: Recipe;
   recipe: Recipe;
   recipeIdFromRoute: number;
- 
+
   constructor(private slService: ShoppingListService,
               private recipeSerice: RecipeService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
-    //This is good for intiialization of the component, but it will not update dynamicaly 
+    // This is good for intiialization of the component, but it will not update dynamicaly
     // let recipeIdFromRoute = this.route.snapshot.params['id'];
     // this.recipe = this.recipeSerice.getRecipe(recipeIdFromRoute);
 
-    //To update dynamicaly, we need to use the params Observable
+    // To update dynamicaly, we need to use the params Observable
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.recipeIdFromRoute = params['id'];
+          this.recipeIdFromRoute = params.id;
           this.recipe = this.recipeSerice.getRecipe(this.recipeIdFromRoute);
         }
-      )
+      );
   }
 
   sendToShoppingList() {
-    for(let i = 0; i < this.recipe.ingredients.length; i++) {
-      this.slService.addIngredient(this.recipe.ingredients[i]);
+    for (const ingredient of this.recipe.ingredients) {
+      this.slService.addIngredient(ingredient);
     }
     alert('Items sent to Shopping List!');
   }

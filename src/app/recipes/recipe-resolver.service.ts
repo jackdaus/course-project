@@ -10,8 +10,8 @@ export class RecipeResolverService implements Resolve<Recipe[]> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const recipes = this.recipeService.getRecipes();
-        
-        //only fetch data if data hasn't already been fetched
+
+        // only fetch data if data hasn't already been fetched
         if (recipes.length === 0 ) {
             return this.dataStorageService.retrieveRecipes();
         } else {

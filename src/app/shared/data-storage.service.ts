@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { RecipeService } from '../recipes/recipes.service';
 import { Recipe } from '../recipes/recipe.model';
 import { map, tap, take, exhaustMap } from 'rxjs/operators';
@@ -8,8 +8,8 @@ import { AuthService } from '../auth/auth.service';
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
     constructor(private http: HttpClient, private recipeService: RecipeService, private authService: AuthService) { }
-    baseURL: string = 'https://ng-course-recipe-book-9806c.firebaseio.com/';
-    recipesEndPoint: string = 'recipes.json';
+    baseURL = 'https://ng-course-recipe-book-9806c.firebaseio.com/';
+    recipesEndPoint = 'recipes.json';
 
     storeRecipes() {
         const recipes = this.recipeService.getRecipes();
@@ -17,7 +17,7 @@ export class DataStorageService {
         this.http.put(this.baseURL + this.recipesEndPoint,
             recipes)
             .subscribe(
-                resData =>{},
+                resData => {},
                 this.catchStorageError
             );
     }
