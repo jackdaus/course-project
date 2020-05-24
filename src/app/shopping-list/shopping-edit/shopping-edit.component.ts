@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
-  @ViewChild('f',{static: false}) slForm: NgForm;
+  @ViewChild('f', {static: false}) slForm: NgForm;
   constructor(private shoppingListService: ShoppingListService) { }
   subscription: Subscription;
   editMode = false;
@@ -26,15 +26,15 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
           this.slForm.setValue({
             name: this.editedItem.name,
             amount: this.editedItem.amount
-          })
+          });
         }
       );
   }
 
   onSubmit(recipeForm: NgForm) {
-    let newIngredientName = recipeForm.form.controls.name.value;
-    let newIngredientAmount = recipeForm.form.controls.amount.value;
-    let newIngredient: Ingredient = new Ingredient(newIngredientName, newIngredientAmount);
+    const newIngredientName = recipeForm.form.controls.name.value;
+    const newIngredientAmount = recipeForm.form.controls.amount.value;
+    const newIngredient: Ingredient = new Ingredient(newIngredientName, newIngredientAmount);
     if (this.editMode) {
       this.shoppingListService.updateIngredient(this.editedItemIndex, newIngredient);
     } else {

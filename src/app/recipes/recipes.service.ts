@@ -17,13 +17,13 @@ export class RecipeService {
     }
 
     getRecipes() {
-        //Uisng slice() with no arguments will keep the array's reference private
+        // Uisng slice() with no arguments will keep the array's reference private
         return this.recipes.slice();
-    };
+    }
 
-    //To return an individual recipe, given the id number
+    // To return an individual recipe, given the id number
     getRecipe(id: number) {
-        
+
         return this.recipes[id];
     }
 
@@ -38,7 +38,7 @@ export class RecipeService {
     }
 
     deleteRecipe(index: number) {
-        this.recipes.splice(index,1);
+        this.recipes.splice(index, 1);
         this.recipesChanged.next(this.recipes.slice());
     }
 }

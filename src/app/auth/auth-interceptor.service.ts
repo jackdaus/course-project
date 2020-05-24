@@ -6,18 +6,18 @@ import { take, exhaustMap } from 'rxjs/operators';
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
     constructor(private authService: AuthService) {}
-    
+
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         return this.authService.user.pipe(
             take(1),
             exhaustMap(user => {
-                //If there is no user logged in, just send the original request. This is used for http requests to log in. 
+                // If there is no user logged in, just send the original request. This is used for http requests to log in.
                 if (!user) {
                     return next.handle(req);
                 }
-                const modifiedReq = req.clone({params: new HttpParams().set('auth',user.token)});
+                const modifiedReq = req.clone({params: new HttpParams().set('auth', user.token)});
                 return next.handle(modifiedReq);
             })
-        )
-    } 
+        );
+    }
 }

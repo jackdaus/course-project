@@ -12,7 +12,7 @@ export class ShoppingListService {
     ];
 
   getIngredients() {
-    return this.ingredients.slice();  
+    return this.ingredients.slice();
   }
 
   getIngredient(index: number) {
@@ -29,7 +29,7 @@ export class ShoppingListService {
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 
-  clearIngredients(){
+  clearIngredients() {
     this.ingredients = [];
     this.ingredientsChanged.next(this.ingredients.slice());
   }
