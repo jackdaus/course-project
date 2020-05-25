@@ -26,6 +26,30 @@ export function shoppingListReducer(
         ingredients: [...state.ingredients, ...action.payload]
       }
 
+    case ShoppingListActions.UPDATE_INGREDIENT:
+      // get the original ingredient
+      const ingredient = state.ingredients[action.payload.index];
+      // copy the original ingredient and update the values
+      const updatedIngredient = {
+        ...ingredient,
+        ...action.payload.ingredient
+      };
+      // create a new ingredients array 
+      const updateIngredients = [...state.ingredients];
+      // update the original ingredient with our new ingredient
+      updateIngredients[action.payload.index] = updatedIngredient;
+      return {
+        ...state,
+        ingredients: updateIngredients
+      };
+
+    case ShoppingListActions.DELETE_INGREDIENT:
+      return {
+        ...state,
+        ingredients: state.ingredients.filter((ig, igIndex) => {
+          return igIndex != action.payload;
+        })
+      };
 
     // This handles the initialization action of the list. It returns the initialState we defined above.
     default:
