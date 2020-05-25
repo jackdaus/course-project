@@ -13,7 +13,7 @@ const appRoutes: Routes = [
     },
     {
       path: 'shopping-list',
-      loadChildren: './shopping-list/shopping-list.module#ShoppingListModule' // old approach to set module
+      loadChildren: () => import('./shopping-list/shopping-list.module').then(m => m.ShoppingListModule)
     },
     {
       path: 'auth',

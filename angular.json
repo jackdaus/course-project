@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "course-project"
+  "defaultProject": "course-project",
+  "cli": {
+    "analytics": "360c1f4e-3c5b-454f-a9fe-c78b5f83507c"
+  }
 }
