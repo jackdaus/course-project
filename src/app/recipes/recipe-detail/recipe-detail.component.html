@@ -1,44 +1,32 @@
-<div class="row">
-  <div class="col-xs-12">
-    <img [src]="recipe.imagePath" alt="{{recipe.imagePath}}" class="img-responsive" style="max-height: 300px; ">
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12" fxLayout="row" fxLayoutAlign="space-between end">
-    <h1>{{recipe.name}}</h1>
-
-    <div>
-      <button mat-icon-button (click)="sendToShoppingList()" matTooltip="Send to shopping list">
-        <mat-icon>assignment</mat-icon>
-      </button>
-      
-      
-      <button mat-icon-button (click)="editRecipe()" matTooltip="Edit recipe">
-        <mat-icon>edit</mat-icon>
-      </button>
-      
-      
-      <button mat-icon-button (click)="onDeleteRecipe()" matTooltip="Delete recipe">
-        <mat-icon>delete</mat-icon>
-      </button>
+<mat-card>
+  <mat-card-header>
+    <img mat-card-avatar [src]="recipe.imagePath" alt="{{recipe.imagePath}}">
+    <mat-card-title>{{recipe.name}}</mat-card-title>
+    <mat-card-subtitle>{{recipe.description}}</mat-card-subtitle>
+  </mat-card-header>
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+          {{ ingredient.name }} - {{ ingredient.amount }}
+        </li>
+      </ul>
     </div>
-
   </div>
-</div>
 
-<div class="row">
-  <div class="col-xs-12">
-    {{recipe.description}}
-  </div>
-</div>
+  <mat-card-actions>
+    <button mat-icon-button (click)="sendToShoppingList()" matTooltip="Send to shopping list" aria-label="Send to shopping list">
+      <mat-icon>assignment</mat-icon>
+    </button>
+    
+    <button mat-icon-button (click)="editRecipe()" matTooltip="Edit recipe" aria-label="Edit recipe">
+      <mat-icon>edit</mat-icon>
+    </button>
+    
+    <button mat-icon-button (click)="onDeleteRecipe()" matTooltip="Delete recipe" aria-label="Delete recipe">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
 
-<div class="row">
-  <div class="col-xs-12">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
-        {{ ingredient.name }} - {{ ingredient.amount }}
-      </li>
-    </ul>
-  </div>
-</div>
+</mat-card>
