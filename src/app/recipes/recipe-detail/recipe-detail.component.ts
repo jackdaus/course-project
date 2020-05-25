@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
 import { Recipe } from '../recipe.model';
 import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from '../recipes.service';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { Ingredient } from 'src/app/shared/ingredient.model';
+import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,15 +15,16 @@ import { DataStorageService } from 'src/app/shared/data-storage.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  // @Input() recipe: Recipe;
   recipe: Recipe;
   recipeIdFromRoute: number;
 
   constructor(private slService: ShoppingListService,
-              private recipeSerice: RecipeService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private dataStorageService: DataStorageService,) { }
+    private recipeSerice: RecipeService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private dataStorageService: DataStorageService,
+    private store: Store<{shoppingList: {ingredients: Ingredient[]}}>,
+  ) { }
 
   ngOnInit() {
     // This is good for intiialization of the component, but it will not update dynamicaly
@@ -37,9 +42,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   sendToShoppingList() {
-    for (const ingredient of this.recipe.ingredients) {
-      this.slService.addIngredient(ingredient);
-    }
+    this.store.dispatch(new ShoppingListActions.AddIngredients(this.recipe.ingredients));
     alert('Items sent to Shopping List!');
   }
 
