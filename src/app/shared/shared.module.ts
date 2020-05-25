@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule} from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { DropdownDirective } from './dropdown.directive';
 
 @NgModule({
@@ -15,6 +20,10 @@ import { DropdownDirective } from './dropdown.directive';
     LoadingSpinnerComponent,
     CommonModule,
     DropdownDirective,
+    FlexLayoutModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
   ],
 })
 export class SharedModule {}
