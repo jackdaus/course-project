@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
   ],
   imports: [
-    SharedModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    CoreModule,
     BrowserAnimationsModule,
+    StoreModule,
+    SharedModule,
+    AppRoutingModule,
+    CoreModule,
   ],
   bootstrap: [AppComponent]
 })
